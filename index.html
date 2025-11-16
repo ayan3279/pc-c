@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -18,30 +19,29 @@
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
           border:1px solid rgba(255,255,255,0.03); padding:28px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
     header h1{margin:0;font-size:20px;letter-spacing:0.2px}
-    header p{margin:6px 0 0;color:var(--muted)}
+    header p{margin:6px 0 0;color:var(--muted)}.big{font-size:42px;margin:18px 0 6px}
+.muted{color:var(--muted);font-size:14px}
 
-    .big{font-size:42px;margin:18px 0 6px}
-    .muted{color:var(--muted);font-size:14px}
+.joke-box{min-height:160px;display:flex;align-items:center;justify-content:center;padding:20px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.02);text-align:center}
+.joke{font-size:20px;line-height:1.4}
 
-    .joke-box{min-height:160px;display:flex;align-items:center;justify-content:center;padding:20px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.02);text-align:center}
-    .joke{font-size:20px;line-height:1.4}
+.controls{display:flex;gap:10px;margin-top:16px}
+button{cursor:pointer;border:0;padding:10px 12px;border-radius:8px;background:linear-gradient(90deg,#111827,#0b1220);color:#fff;font-weight:600}
+button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
+.small{padding:8px 10px;font-size:14px}
 
-    .controls{display:flex;gap:10px;margin-top:16px}
-    button{cursor:pointer;border:0;padding:10px 12px;border-radius:8px;background:linear-gradient(90deg,#111827,#0b1220);color:#fff;font-weight:600}
-    button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
-    .small{padding:8px 10px;font-size:14px}
+aside .card{position:sticky;top:32px}
+.list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+.emoji{font-size:20px}
 
-    aside .card{position:sticky;top:32px}
-    .list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-    .item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-    .emoji{font-size:20px}
+footer{margin-top:18px;color:var(--muted);font-size:13px}
 
-    footer{margin-top:18px;color:var(--muted);font-size:13px}
+/* confetti placeholder */
+#confetti {position:fixed;left:0;top:0;pointer-events:none;width:100%;height:100%;z-index:40}
 
-    /* confetti placeholder */
-    #confetti {position:fixed;left:0;top:0;pointer-events:none;width:100%;height:100%;z-index:40}
+@media(max-width:880px){.wrap{grid-template-columns:1fr;}.big{font-size:34px}}
 
-    @media(max-width:880px){.wrap{grid-template-columns:1fr;}.big{font-size:34px}}
   </style>
 </head>
 <body>
@@ -51,66 +51,85 @@
       <header>
         <h1>Page Removed</h1>
         <p class="muted">This office page has been retired. In the meantime: some jokes to lift the mood.</p>
-      </header>
+      </header><div class="big">Need a break? Read a joke — on the house.</div>
 
-      <div class="big">Need a break? Read a joke — on the house.</div>
-
-      <div class="joke-box" id="jokeBox">
-        <div class="joke" id="jokeText">Loading a fresh chuckle...</div>
-      </div>
-
-      <div class="controls">
-        <button id="newJoke">New joke</button>
-        <button id="copyJoke" class="secondary small">Copy</button>
-        <button id="toggleAuto" class="secondary small">Auto: Off</button>
-        <button id="reset" class="secondary small">Reset to message</button>
-      </div>
-
-  
-    </main>
-
-    <aside class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <strong>Quick laugh menu</strong>
-        <span class="muted">Choose a category</span>
-      </div>
-
-      <div class="list">
-        <div class="item"><span class="emoji">🤓</span> <span>Tech jokes</span></div>
-        <div class="item"><span class="emoji">🍔</span> <span>Food jokes</span></div>
-        <div class="item"><span class="emoji">🐶</span> <span>Animal jokes</span></div>
-        <div class="item"><span class="emoji">🧠</span> <span>One-liners</span></div>
-      </div>
-
-      <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
-      <div class="muted">Made with ❤️ to keep the office smiling.</div>
-    </aside>
+  <div class="joke-box" id="jokeBox">
+    <div class="joke" id="jokeText">Loading a fresh chuckle...</div>
   </div>
 
-  <script>
-    // Jokes dataset (safe-for-work)
-    const jokes = [
-      "Why did the developer go broke? Because he used up all his cache.",
-      "I told my computer I needed a break, and it said: 'No problem — I'll go to sleep.'",
-      "Why don’t programmers like nature? Too many bugs.",
-      "Why did the coffee file a police report? It got mugged.",
-      "What do you call cheese that isn't yours? Nacho cheese.",
-      "Why did the scarecrow win an award? He was outstanding in his field.",
-      "What do you call a fake noodle? An impasta.",
-      "I tried to catch some fog earlier. I mist.",
-      "Why don't skeletons fight each other? They don't have the guts.",
-      "Parallel lines have so much in common. It’s a shame they’ll never meet.",
-      "Why did the tomato blush? Because it saw the salad dressing.",
-      "I asked the librarian if the library had books on paranoia. She whispered, 'They're right behind you.'",
-      "Why did the bicycle fall over? It was two-tired.",
-      "I would tell you a UDP joke, but you might not get it.",
-      "A termite walks into the bar and asks, 'Is the bartender here?'",
-      "Why did the PowerPoint presentation cross the road? To get to the other slide.",
-      "What's an electrician's favorite dessert? Brownie points.",
-      "Why did the math book look sad? Because it had too many problems.",
-      "How do you organize a space party? You planet.",
-      "I told a joke about a roof once — it went over people's heads."
-    ];
+  <div class="controls">
+    <button id="newJoke">New joke</button>
+    <button id="copyJoke" class="secondary small">Copy</button>
+    <button id="toggleAuto" class="secondary small">Auto: Off</button>
+    <button id="reset" class="secondary small">Reset to message</button>
+  </div>
+
+  <footer>
+    Tip: You can save this file as <code>index.html</code> and put it in the same place the old page lived.
+  </footer>
+</main>
+
+<aside class="card">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <strong>Quick laugh menu</strong>
+    <span class="muted">Choose a category</span>
+  </div>
+
+  <div class="list">
+    <div class="item" data-cat="tech"><span class="emoji">🤓</span> <span>Tech jokes</span></div>
+    <div class="item" data-cat="food"><span class="emoji">🍔</span> <span>Food jokes</span></div>
+    <div class="item" data-cat="animal"><span class="emoji">🐶</span> <span>Animal jokes</span></div>
+    <div class="item" data-cat="oneliners"><span class="emoji">🧠</span> <span>One-liners</span></div>
+  </div>
+
+  <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+  <div class="muted">Made with ❤️ to keep the office smiling.</div>
+</aside>
+
+  </div>  <script>
+    // Jokes dataset by category (safe-for-work)
+    const jokesByCategory = {
+      tech: [
+        "Why did the developer go broke? Because he used up all his cache.",
+        "I would tell you a UDP joke, but you might not get it.",
+        "Why don’t programmers like nature? Too many bugs.",
+        "Why did the PowerPoint presentation cross the road? To get to the other slide.",
+        "I told my computer I needed a break, and it said: 'No problem — I'll go to sleep.'",
+      ],
+      food: [
+        "Why did the coffee file a police report? It got mugged.",
+        "What do you call cheese that isn't yours? Nacho cheese.",
+        "Why did the tomato blush? Because it saw the salad dressing.",
+      ],
+      animal: [
+        "Why don't skeletons fight each other? They don't have the guts.",
+        "Why did the scarecrow win an award? He was outstanding in his field.",
+        "I tried to catch some fog earlier. I mist.",
+      ],
+      oneliners: [
+        "Parallel lines have so much in common. It’s a shame they’ll never meet.",
+        "I mistook my wife for a printer — I said: 'You still got paper?'",
+        "How do you organize a space party? You planet.",
+      ],
+    };
+
+    // default category
+    let currentCategory = null;
+    
+    function pickRandom(){
+      const list = currentCategory ? jokesByCategory[currentCategory] : Object.values(jokesByCategory).flat();
+      const i = Math.floor(Math.random()*list.length);
+      return list[i];
+    }
+
+    function showJoke(text){
+      jokeText.textContent = text;
+      jokeBox.animate([
+        {transform:'translateY(6px)',opacity:0.85},
+        {transform:'translateY(0)',opacity:1}
+      ],{duration:260,easing:'cubic-bezier(.2,.9,.2,1)'});
+      burst();
+    }
 
     const jokeText = document.getElementById('jokeText');
     const jokeBox = document.getElementById('jokeBox');
@@ -159,6 +178,14 @@
       jokeText.textContent = 'This page has been removed. If you need help, contact IT.';
     });
 
+    // Enable clicking category items
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', () => {
+        currentCategory = item.dataset.cat;
+        showJoke(pickRandom());
+      });
+    });
+
     // Initial display
     showJoke(pickRandom());
 
@@ -197,7 +224,5 @@
       if(e.key === 'a') toggleAuto.click();
       if(e.key === 'c') copyBtn.click();
     });
-  </script>
-</body>
+  </script></body>
 </html>
-
