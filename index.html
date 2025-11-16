@@ -1,187 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Page Removed — Have a Laugh!</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#ffcc00;--muted:#9aa9bf}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,204,0,0.03), transparent),
+                  linear-gradient(180deg,#071024 0%, #0b1224 100%);
+      color:#e6eef8; display:flex; align-items:center; justify-content:center; padding:32px;
+    }
+    .wrap{max-width:980px;width:100%;display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+          border:1px solid rgba(255,255,255,0.03); padding:28px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    header h1{margin:0;font-size:20px;letter-spacing:0.2px}
+    header p{margin:6px 0 0;color:var(--muted)}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+    .big{font-size:42px;margin:18px 0 6px}
+    .muted{color:var(--muted);font-size:14px}
 
-    <title>Class Routine PC-C </title>
-   
-  
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    .joke-box{min-height:160px;display:flex;align-items:center;justify-content:center;padding:20px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.02);text-align:center}
+    .joke{font-size:20px;line-height:1.4}
 
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    .controls{display:flex;gap:10px;margin-top:16px}
+    button{cursor:pointer;border:0;padding:10px 12px;border-radius:8px;background:linear-gradient(90deg,#111827,#0b1220);color:#fff;font-weight:600}
+    button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
+    .small{padding:8px 10px;font-size:14px}
 
-    <link rel="stylesheet" type="text/css" href="css/fullpage.min.css">
+    aside .card{position:sticky;top:32px}
+    .list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .emoji{font-size:20px}
 
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
 
-    <link rel="stylesheet" href="css/animate.css">
+    /* confetti placeholder */
+    #confetti {position:fixed;left:0;top:0;pointer-events:none;width:100%;height:100%;z-index:40}
 
-    <link rel="stylesheet" href="css/templatemo-style.css">
-
-    <link rel="stylesheet" href="css/responsive.css">
-
+    @media(max-width:880px){.wrap{grid-template-columns:1fr;}.big{font-size:34px}}
+  </style>
 </head>
-
 <body>
+  <canvas id="confetti"></canvas>
+  <div class="wrap">
+    <main class="card">
+      <header>
+        <h1>Page Removed</h1>
+        <p class="muted">This office page has been retired. In the meantime: some jokes to lift the mood.</p>
+      </header>
 
-    <div id="video">
-        <div class="preloader">
-            <div class="preloader-bounce">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+      <div class="big">Need a break? Read a joke — on the house.</div>
 
-        <header id="header">
-            <div class="container-fluid">
-                <div class="navbar">
-                    <a href="#slide01" id="logo" title="Imran Hossain Ayan">
-                        Class Scedule (PC-C)
-            
-                    </a>
-                    <div class="navigation-row">
-                        <nav id="navigation">
-                            <button type="button" class="navbar-toggle"> <i class="fa fa-bars"></i> </button>
-                            <div class="nav-box navbar-collapse">
-                                <ul class="navigation-menu nav navbar-nav navbars" id="nav">
-                                    <li data-menuanchor="slide01" class="active"><a href="#slide01">Saturday</a></li>
-                                    <li data-menuanchor="slide02"><a href="#slide02">Sunday</a></li>
-                                    <li data-menuanchor="slide03"><a href="#slide03">Monday</a></li>
-                                    <li data-menuanchor="slide04"><a href="#slide04">Tuesday</a></li>
-                                    <li data-menuanchor="slide05"><a href="#slide05">Wednesday</a></li>
-                                    <li data-menuanchor="slide06"><a href="#slide06">Thursday</a></li>
-                                    <li data-menuanchor="slide07"><a href="#slide07">Friday</a></li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
+      <div class="joke-box" id="jokeBox">
+        <div class="joke" id="jokeText">Loading a fresh chuckle...</div>
+      </div>
 
-        <video autoplay muted loop id="myVideo">
-            <source src="images/diu.mp4" type="video/mp4">
-          </video>
+      <div class="controls">
+        <button id="newJoke">New joke</button>
+        <button id="copyJoke" class="secondary small">Copy</button>
+        <button id="toggleAuto" class="secondary small">Auto: Off</button>
+        <button id="reset" class="secondary small">Reset to message</button>
+      </div>
 
-        <div id="fullpage" class="fullpage-default">
+      <footer>
+        Tip: You can save this file as <code>index.html</code> and put it in the same place the old page lived.
+      </footer>
+    </main>
 
-            <div class="section animated-row" data-section="slide01">
-                <div class="section-inner">
-                    <div class="welcome-box">
-                        <span class="welcome-first animate" data-animate="fadeInUp">Today You Have 2 Classes</span>
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">8.30am To 11.30am</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>CSE222 By FA</strong></p>
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">01.00PM To 02.30Pm</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>CSE216 By SHSU</strong></p>
+    <aside class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <strong>Quick laugh menu</strong>
+        <span class="muted">Choose a category</span>
+      </div>
 
+      <div class="list">
+        <div class="item"><span class="emoji">🤓</span> <span>Tech jokes</span></div>
+        <div class="item"><span class="emoji">🍔</span> <span>Food jokes</span></div>
+        <div class="item"><span class="emoji">🐶</span> <span>Animal jokes</span></div>
+        <div class="item"><span class="emoji">🧠</span> <span>One-liners</span></div>
+      </div>
 
-                    </div>
-                </div>
-            </div>
+      <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+      <div class="muted">Made with ❤️ to keep the office smiling.</div>
+    </aside>
+  </div>
 
-            <div class="section animated-row" data-section="slide02">
-                <div class="section-inner">
-                    <div class="welcome-box">
-                        <span class="welcome-first animate" data-animate="fadeInUp">Today You Have 2 Classes</span>
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">11.30am To 01.00pm</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>MAT211 By MAPA</strong></p>
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">01.00pm To 02.30pm</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>CSE221 By FA</strong></p>
+  <script>
+    // Jokes dataset (safe-for-work)
+    const jokes = [
+      "Why did the developer go broke? Because he used up all his cache.",
+      "I told my computer I needed a break, and it said: 'No problem — I'll go to sleep.'",
+      "Why don’t programmers like nature? Too many bugs.",
+      "Why did the coffee file a police report? It got mugged.",
+      "What do you call cheese that isn't yours? Nacho cheese.",
+      "Why did the scarecrow win an award? He was outstanding in his field.",
+      "What do you call a fake noodle? An impasta.",
+      "I tried to catch some fog earlier. I mist.",
+      "Why don't skeletons fight each other? They don't have the guts.",
+      "Parallel lines have so much in common. It’s a shame they’ll never meet.",
+      "Why did the tomato blush? Because it saw the salad dressing.",
+      "I asked the librarian if the library had books on paranoia. She whispered, 'They're right behind you.'",
+      "Why did the bicycle fall over? It was two-tired.",
+      "I would tell you a UDP joke, but you might not get it.",
+      "A termite walks into the bar and asks, 'Is the bartender here?'",
+      "Why did the PowerPoint presentation cross the road? To get to the other slide.",
+      "What's an electrician's favorite dessert? Brownie points.",
+      "Why did the math book look sad? Because it had too many problems.",
+      "How do you organize a space party? You planet.",
+      "I told a joke about a roof once — it went over people's heads."
+    ];
 
-                    </div>
-                </div>
-            </div>
+    const jokeText = document.getElementById('jokeText');
+    const jokeBox = document.getElementById('jokeBox');
+    const newJokeBtn = document.getElementById('newJoke');
+    const copyBtn = document.getElementById('copyJoke');
+    const toggleAuto = document.getElementById('toggleAuto');
+    const resetBtn = document.getElementById('reset');
 
-            <div class="section animated-row" data-section="slide03">
-                <div class="section-inner">
-                    <div class="welcome-box">
-                        <span class="welcome-first animate" data-animate="fadeInUp">Today You Have 1 Class</span>
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">04.00pm To 05.30pm</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>MAT212 By RR</strong></p>
+    function pickRandom(){
+      const i = Math.floor(Math.random()*jokes.length);
+      return jokes[i];
+    }
 
-                    </div>
-                </div>
-            </div>
+    function showJoke(text){
+      jokeText.textContent = text;
+      // tiny pop animation
+      jokeBox.animate([
+        {transform:'translateY(6px)',opacity:0.85},
+        {transform:'translateY(0)',opacity:1}
+      ],{duration:260,easing:'cubic-bezier(.2,.9,.2,1)'});
+      burst();
+    }
 
-            <div class="section animated-row" data-section="slide04">
-                <div class="section-inner">
-                    <div class="welcome-box">
-                        <span class="welcome-first animate" data-animate="fadeInUp">Today You Have 3 Classes</span>
+    newJokeBtn.addEventListener('click',()=>showJoke(pickRandom()));
+    copyBtn.addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText(jokeText.textContent);
+        copyBtn.textContent = 'Copied!';
+        setTimeout(()=>copyBtn.textContent='Copy',1200);
+      }catch(e){
+        copyBtn.textContent = 'Copy failed';
+        setTimeout(()=>copyBtn.textContent='Copy',1200);
+      }
+    });
 
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">10.00am To 11.30am</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>CSE221 By FA</strong></p>
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">01.00PM To 04.00Pm</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>CSE213 By MJI</strong></p>
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">04.00PM To 05.30Pm</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>MAT211 By MAPA</strong></p>
+    // Auto-rotate jokes
+    let auto = false; let autoId = null;
+    toggleAuto.addEventListener('click',()=>{
+      auto = !auto; toggleAuto.textContent = `Auto: ${auto? 'On':'Off'}`;
+      if(auto){ autoId = setInterval(()=>showJoke(pickRandom()),4000); }
+      else { clearInterval(autoId); autoId = null; }
+    });
 
-                    </div>
-                </div>
-            </div>
+    // Reset to default message used when you remove the page
+    resetBtn.addEventListener('click',()=>{
+      jokeText.textContent = 'This page has been removed. If you need help, contact IT.';
+    });
 
-            <div class="section animated-row" data-section="slide05">
-                <div class="section-inner">
-                    <div class="welcome-box">
-                        <span class="welcome-first animate" data-animate="fadeInUp">Today You Have NO Classes</span>
+    // Initial display
+    showJoke(pickRandom());
 
+    // Small confetti burst when showing a new joke
+    function burst(){
+      // lightweight confetti using canvas
+      const c = document.getElementById('confetti');
+      const ctx = c.getContext('2d');
+      c.width = innerWidth; c.height = innerHeight;
+      const pieces = [];
+      const colors = ['#ffcc00','#60a5fa','#34d399','#f472b6','#f97316'];
+      for(let i=0;i<30;i++){
+        pieces.push({x: Math.random()*c.width, y: -10, vx: (Math.random()-0.5)*6, vy: Math.random()*5+2, r:Math.random()*6+2, c: colors[Math.floor(Math.random()*colors.length)], rot:Math.random()*6});
+      }
+      let life=0; const ttl=60;
+      function frame(){
+        ctx.clearRect(0,0,c.width,c.height);
+        for(const p of pieces){
+          p.x += p.vx; p.y += p.vy; p.vy += 0.15; p.rot += 0.1;
+          ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+          ctx.fillStyle = p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.8);
+          ctx.restore();
+        }
+        life++; if(life<ttl) requestAnimationFrame(frame);
+        else ctx.clearRect(0,0,c.width,c.height);
+      }
+      frame();
+    }
 
-                    </div>
-                </div>
+    // make sure confetti canvas stays sized when window resizes
+    addEventListener('resize',()=>{ const c = document.getElementById('confetti'); c.width=innerWidth; c.height=innerHeight; });
 
-            </div>
-
-            <div class="section animated-row" data-section="slide06">
-                <div class="section-inner">
-                    <div class="welcome-box">
-                        <span class="welcome-first animate" data-animate="fadeInUp">Today You Have 1 Class</span>
-
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">11.00am To 02.30pm</h1>
-                        <p class="wlc-animate" data-animate="fadeInUp"><strong>ACT211 By UK</strong></p>
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="section animated-row" data-section="slide07">
-                <div class="section-inner">
-                    <div class="welcome-box">
-                        <span class="welcome-first animate" data-animate="fadeInUp">Today You Have NO Classes</span>
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-
-    <script src="js/jquery.js"></script>
-
-    <script src="js/bootstrap.min.js"></script>
-
-    <script src="js/fullpage.min.js"></script>
-
-    <script src="js/scrolloverflow.js"></script>
-
-    <script src="js/owl.carousel.min.js"></script>
-
-    <script src="js/jquery.inview.min.js"></script>
-
-    <script src="js/form.js"></script>
-
-    <script src="js/custom.js"></script>
-
-
+    // Accessibility: keyboard shortcuts
+    addEventListener('keydown',(e)=>{
+      if(e.key === 'n') showJoke(pickRandom());
+      if(e.key === 'a') toggleAuto.click();
+      if(e.key === 'c') copyBtn.click();
+    });
+  </script>
 </body>
-
 </html>
